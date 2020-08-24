@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: myapp-pod
+    labels:
+      app: myapp
+      type: front-end
+
+
+spec:
+  containers:
+    # following entity is a first list element which is dictionary
+    - name: nginx-container
+      image: nginx
