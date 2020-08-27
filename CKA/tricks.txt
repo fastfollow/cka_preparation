@@ -1,0 +1,14 @@
+# Switch namespace:
+
+kubectl config set-context $(kubectl config current-context) --namespace=dev
+kubectl get pods --all-namespaces
+
+
+# YAML tricks
+
+kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml #deprecated
+kubectl run pod  nginx --image=nginx --dry-run -o yaml
+kubectl create deployment --image=nginx nginx --dry-run -o yaml
+kubectl create deployment --image=nginx nginx --dry-run -o yaml > nginx-deployment.yaml
+# https://kubernetes.io/docs/reference/kubectl/conventions/
+
