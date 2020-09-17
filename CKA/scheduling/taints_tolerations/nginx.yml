@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: web
+    type: websrv
+    dev: alexey
+  annotations:
+    contact: Alexey_Melnikov
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+  tolerations:
+    - key: app
+      #operator: "Equal"
+      value: "red"
+      effect: NoSchedule

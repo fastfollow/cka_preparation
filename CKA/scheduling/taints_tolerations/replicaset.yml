@@ -1,0 +1,28 @@
+apiVersion:  apps/v1
+kind: ReplicaSet
+metadata: 
+  name: replica
+  # labels related to the replicaset
+  labels:
+    app: app1
+    type: replica
+  annotations:
+    build: v.0.0.1
+    contact: Aleksei_Melnikov
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      name: redis
+      # labels configured on the pods
+      labels:
+        app: web
+        type: db
+        dev: alexey
+    spec:
+      containers:
+        - name: redis
+          image: redis

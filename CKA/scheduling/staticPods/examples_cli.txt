@@ -1,0 +1,37 @@
+fastfollow@kubemaster:/home/vagrant$ kubectl get nodes
+NAME         STATUS     ROLES    AGE   VERSION
+kubemaster   Ready      master   12d   v1.18.8
+kubenode01   NotReady   <none>   12d   v1.18.8
+
+#node with static pods:
+kubenode02   Ready      <none>   12d   v1.18.8
+fastfollow@kubemaster:/home/vagrant$ kubectl get pods
+NAME                      READY   STATUS             RESTARTS   AGE
+monitoring-daemon-cdt6f   0/1     ErrImagePull       0          24h
+monitoring-daemon-qjrlz   0/1     ImagePullBackOff   0          24h
+#see at tail of name:
+nginx-pod-kubenode02      1/1     Running            0          70s
+redis-pod-kubenode02      1/1     Running            0          21s
+fastfollow@kubemaster:/home/vagrant$
+
+#the same with master node:
+
+master $ kubectl get pods --all-namespaces
+NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
+kube-system   coredns-66bff467f8-gcx7t                  1/1     Running   0          14m
+kube-system   coredns-66bff467f8-sf67l                  1/1     Running   0          14m
+# below is static!
+kube-system   etcd-master                               1/1     Running   0          14m
+kube-system   katacoda-cloud-provider-58f89f7d9-bstw8   1/1     Running   7          14m
+# below is static!
+kube-system   kube-apiserver-master                     1/1     Running   0          14m
+# below is static!
+kube-system   kube-controller-manager-master            1/1     Running   0          14m
+kube-system   kube-flannel-ds-amd64-48s89               1/1     Running   0          14m
+kube-system   kube-flannel-ds-amd64-87smb               1/1     Running   0          13m
+kube-system   kube-keepalived-vip-s8l56                 1/1     Running   0          13m
+kube-system   kube-proxy-9z8cx                          1/1     Running   0          13m
+kube-system   kube-proxy-jxqpq                          1/1     Running   0          14m
+# below is static!
+kube-system   kube-scheduler-master                     1/1     Running   0          14m
+master $
