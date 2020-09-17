@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: data-processing
+  #labels:
+
+spec:
+  containers:
+    - name: data-processor
+      image: data-processor
+  #here
+  nodeSelector:
+    size: Large
+    # node should be labeled with
+    # kubectl label nodes kubenode01 size=Large
+    
