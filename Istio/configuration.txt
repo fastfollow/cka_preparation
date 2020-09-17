@@ -1,0 +1,50 @@
+#Frontend:
+
+template:
+ spec:
+      containers:
+      - image: schoolofdevops/frontend:latest
+
+#Frontend service
+
+ports:
+  - nodePort: 32000
+    port: 80
+    protocol: TCP
+    targetPort: 8079
+  selector:
+    app: frontend
+  sessionAffinity: None
+  type: LoadBalancer
+
+
+# Catalogue
+
+image: gouravshah/catalogue:latest
++ Environment variables (2 last ones)
+https://github.com/gouravshah/catalogue/blob/master/docker-compose.yml
+
+# Catalogue (service)
+ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: catalogue
+  
+  type: ClusterIP
+
+  !!! name: catalogue
+
+# Catalogue-db
+image: gouravshah/catalogue-db:latest
+
+#service:
+ports:
+  - port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    app: catalogue-db
+  type: ClusterIP
+

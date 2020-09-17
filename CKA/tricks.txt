@@ -16,11 +16,13 @@ kubectl expose pod nginx --port=80 --name nginx-service --type=NodePort --dry-ru
 kubectl create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml 
 kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
 
-
 kubectl get pod webapp -o yaml > my-new-pod.yaml
 # get current pod yaml
 kubectl delete pod webapp
 kubectl create -f my-new-pod.yaml
 
-Static Pods:
-/etc/kubernetes/manifests
+# Static Pods locating on nodes:
+# ps -aux | grep kubelet
+# > config (/var/lib/kubelet/config.yaml)
+# > staticPodPath: /etc/kubernetes/manifests
+# on nodes: docker ps
