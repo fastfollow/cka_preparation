@@ -1,7 +1,9 @@
-CKA Udemy courses by KodeKloud1:
+CKA prep courses
 
 * Kubernetes for the beginners
 * Kubernetes: CKA 
+* LFS258
+* Istio by School of DevOps
 
 
 
